@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+}
+
+::selection {
+  background: rgba(8, 124, 255, 0.25);
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid #087cff;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(8, 124, 255, 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(8, 124, 255, 0.45);
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/60;
+  }
+  .glass-dark {
+    @apply bg-navy-900/60 backdrop-blur-xl border border-white/10;
+  }
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200/80 shadow-soft;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-electric text-white hover:bg-[#0769e0] hover:shadow-glow;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-ink border border-slate-200 hover:border-electric hover:text-electric;
+  }
+  .btn-ghost {
+    @apply btn text-ink/70 hover:bg-slate-100 hover:text-ink;
+  }
+  .btn-cyan {
+    @apply btn bg-cyan text-navy-950 hover:brightness-105 hover:shadow-glow;
+  }
+  .input {
+    @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-ink placeholder:text-slate-400 transition focus:border-electric focus:ring-2 focus:ring-electric/20 outline-none;
+  }
+  .label {
+    @apply block text-sm font-medium text-ink/80 mb-1.5;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+  .section-title {
+    @apply text-2xl font-display font-bold text-ink tracking-tight;
+  }
+}
+
+.badge-match {
+  @apply chip bg-electric/10 text-electric;
+}
+.badge-strong {
+  @apply chip bg-success/10 text-success;
+}
+.badge-gap {
+  @apply chip bg-warning/10 text-warning;
+}
+.badge-major {
+  @apply chip bg-danger/10 text-danger;
+}
+.badge-ready {
+  @apply chip bg-success/10 text-success;
+}
+.badge-dev {
+  @apply chip bg-electric/10 text-electric;
+}
+
+/* Progress shimmer */
+.progress-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.progress-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: shimmer 1.6s infinite;
+}
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
